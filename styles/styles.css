@@ -13,7 +13,7 @@ h1 {
   color: steelblue;
 }
 
-img {
+main img {
   width: 150px;
   height: auto;
   border: 1px solid steelblue;
@@ -25,15 +25,15 @@ p {
   padding: 0px;
 }
 
-main {
+/* main {
   max-width: 840px;
-}
+} */
 
 aside {
   width: 20rem;
-  margin: 1rem;
+  margin: 1em;
   border: 1px solid rgba(0,0,0,0.2);
-  padding: 1rem;
+  padding: 1em;
   background-color: #eee;
   color: #302222;
   text-align: center;
@@ -44,13 +44,13 @@ aside img {
   height: auto;
 }
 
-main img {
+/* main img {
   width: 150px;
   height: auto;
-}
+} */
 
 footer {
-  margin-top: 15px;
+  margin-top: 15em;
   border-top: 1px solid #000;
   text-align: center;
 }
