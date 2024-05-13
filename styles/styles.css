@@ -47,6 +47,7 @@ aside {
   background-color: #eee;
   color: #302222;*/
   text-align: center;
+  position: relative;
 }
 
 aside img {
