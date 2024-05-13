@@ -6,8 +6,8 @@
 --accent1-color: #AF9B46 ; /* header background */
 --accent2-color: #F7B05B;
 
---heading-font: '______', serif;
---paragraph-font: '______', serif;
+--heading-font: 'Roboto', serif;
+--paragraph-font: 'Open Sans', serif;
 
 --nav-background-color: var(--accent1-color);
 --nav-link-color: var(--secondary-color);
