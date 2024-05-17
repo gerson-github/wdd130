@@ -45,9 +45,9 @@ aside {
   border: 1px solid rgba(0,0,0,0.2);
   padding: 1rem;
   background-color: #eee;
-  color: #302222;*/
+  color: #302222; */
   text-align: center;
-  
+  position: relative;
 }
 
 aside img {
@@ -56,9 +56,9 @@ aside img {
 }
 
 aside h2 {
-  position: relative;
-  top: 25px;
-  left: 0px;
+  position: absolute;
+  top: 47px;
+  left: 150px;
 }
 
 
