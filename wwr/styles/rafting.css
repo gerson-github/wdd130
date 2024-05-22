@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Open+Sans&display=swap');
+
+* {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+:root {
+--primary-color: #000000 ;
+--secondary-color: #000000 ;
+--accent1-color: #AF9B46 ; /* header background */
+--accent2-color: #F7B05B;
+
+--heading-font: 'Roboto', serif;
+--paragraph-font: 'Open Sans', serif;
+
+--nav-background-color: var(--accent1-color);
+--nav-link-color: var(--secondary-color);
+--nav-hover-link-color: var(--secondary-color);
+--nav-hover-background-color: var(--accent2-color);
+}
+
+body {
+    font-family: var(--paragraph-font);
+    max-width: 960px;
+    padding: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    color: var(--primary-color);
+}
+    
+header {
+    padding: 20px;
+    background-color: var(--accent1-color);
+}
+
+p {
+    padding: 25px;
+    
+}
+
+nav{
+    background-color: var(--nav-background-color);
+    font-size: 1.2rem;
+    display: flex;
+  }
+  
+  nav a  {
+    display: block;
+    color: var(--nav-link-color);
+    text-decoration: none;
+    padding: 1rem;
+  }
+  
+  nav a:link, nav a:visited {
+    color: var(--nav-link-color);
+  }
+  
+  nav a:hover {
+    color: var(--nav-hover-link-color);
+    background-color: var(--nav-hover-background-color);
+  }
+
+
+
+.hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden; /* Ensure the hero image does not overflow */
+}
+
+.hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero h1 {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  right: 50px;
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4); /* Example background color with transparency */
+  padding: 0.5em 0;
+}
+
+.hero article {
+  position: absolute;
+  top: 150px;
+  left: 50px;
+  right: 50px;
+  padding: 3px;
+  background-color: rgba(0, 0, 0, 0.4); /* Example background color with transparency */
+  color: white;
+  }
+
+.hero article img {
+  float: right;
+  margin-left: 20px; /* Adjust as needed */
+  max-width: 200px; /* Example maximum width for the image */
+}
+
+
