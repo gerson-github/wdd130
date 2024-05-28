@@ -66,12 +66,13 @@ nav{
 
   }
   
-  nav a  {
-    var(--nav-link-color);
+  nav a {
+    color: var(--nav-link-color);
     padding: 1rem;
     text-decoration: none;
     width: 10rem;
   }
+  
   
   nav a:link, nav a:visited {
     color: var(--nav-link-color);
