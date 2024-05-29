@@ -36,6 +36,7 @@ header {
     /* padding: 20px;
     background-color: var(--accent1-color);
     display: grid; */
+  
     margin: 1rem auto;
     display: grid;
     grid-template-columns: 1fr 2fr 2fr;
@@ -83,8 +84,6 @@ nav{
     background-color: var(--nav-hover-background-color);
   }
 
-
-
 .hero {
   position: relative;
   width: 100%;
@@ -122,6 +121,49 @@ nav{
   float: right;
   margin-left: 20px; /* Adjust as needed */
   max-width: 200px; /* Example maximum width for the image */
+}
+
+.flexbox-container {
+  /* background-color: #AF9B46; */
+   display: flex;
+  flex-flow: row wrap;
+    
+}
+
+.flexbox-item {
+  padding: 10px;
+  margin: 10px; 
+
+  display: flex;
+  flex-direction: column; /* Stacks the image and caption vertically */
+  align-items: center; /* Centers the image and caption horizontally */
+  text-align: center;
+
+}
+
+.flexbox-item > figcaption {
+  margin-top: 2px; /* Adds space between the image and the caption */
+  color: #555; /* Sets the color of the caption text (optional) */
+  font-size: small;
+
+}
+
+
+ .flexbox-item-img  {
+  width: 110px;
+  height: 110px;
+
+} 
+
+/*----------------------*/
+footer {
+  
+  display: grid;
+  
+}
+
+.sociallinks {
+  flex: 100px 100px;
 }
 
 
