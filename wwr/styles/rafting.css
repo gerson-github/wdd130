@@ -141,7 +141,7 @@ nav{
 
 }
 
-.flexbox-item > figcaption {
+.flexbox-item > figure > figcaption {
   margin-top: 2px; /* Adds space between the image and the caption */
   color: #555; /* Sets the color of the caption text (optional) */
   font-size: small;
