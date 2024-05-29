@@ -156,14 +156,25 @@ nav{
 } 
 
 /*----------------------*/
-footer {
-  
-  display: grid;
-  
+
+
+
+.sociallinks-img {
+  width: 20px;
+  height: 20px;
+  padding: 2px;
 }
 
-/* .sociallinks {
-  flex: 100px 100px;
-} */
+
+#content {
+  display: flex;
+  border-top: 1px solid lightgrey;
+
+  justify-content: flex-evenly;
+  align-items: baseline;
+  
+  padding: 10px;
+
+}
 
 
