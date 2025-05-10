@@ -1,0 +1,2160 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form - IslandBusinessForms_UI</title> 
+  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/businessforms/css/docs.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.css" integrity="sha256-He3QEBKoL/nMXlVsoM7S2C2kjFQqS5L+mgA+F8LpG+U=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link href="/businessforms/css/mvc-grid/mvc-grid.css" rel="stylesheet">
+    <link href="/businessforms/css/sidebar.css" rel="stylesheet" />
+    <link href="/businessforms/css/site-grid.css" rel="stylesheet" />
+    <link href="/businessforms/css/site.css" rel="stylesheet" />
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+    <script src="/businessforms/lib/jquery/jquery.js"></script>
+    <script>
+        /*  baseUrl globally available - should always add this before searchaduser.js
+        work around for the root url issue where
+        base url is different from localhost vs webserver host */ 
+
+        let baseUrl = '/businessforms';
+
+        if (baseUrl == "/") {
+            baseUrl = '';
+        }
+        baseUrl = location.origin + baseUrl;
+    </script>
+
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+            <div class="container-fluid">
+                <a class="navbar-brand text-primary" href="#">
+                    <img src="/businessforms/images/logo.png" width="60" height="35" class="d-inline-block align-top" alt="Island Health">
+                </a>
+                <nav aria-label="breadcrumb" style='--bs-breadcrumb-divider: ">";'>
+                    <ol class="breadcrumb m-0 fs-5">
+                        <li class="breadcrumb-item"><a style="text-decoration: none" class="cbs-text-blue-dark fw-bold" href="/businessforms/Form/Index">Business Forms</a></li>
+                        <li class="breadcrumb-item active cbs-text-blue fw-bold" aria-current="page">Occupational Hazard Report</li>
+                    </ol>
+                </nav>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+             
+
+            <form class="form-inline">
+                <h3><span class="badge badge-primary" id="layoutUserInfo" title="Martins de Oliveira, Gerson [ISLH]">GM</span></h3>
+            </form>
+        </nav>
+    </header>
+    <div id="modalUserInformation" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitleLabel2" class="justify-content-center"><span class="material-icons-outlined" style="font-size:60px; font-weight:bold">account_circle</span></h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12 text-center"><span>Martins de Oliveira, Gerson [ISLH]</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-center small"><span>VIHA\GMartinsde</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-center small"><span>Corporate Business Solutions</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-center small"><span>Gerson.MartinsdeOliveira@islandhealth.ca</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-center small"><span>056820</span></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-lg-4 float-lg-right btn-group">
+                        <button class="btn btn-outline-secondary" onclick="$('#modalUserInformation').modal('hide');" aria-hidden="true">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <!-- Render Sidebar-->
+
+        
+<nav id="sidebar">
+    <ul class="list-unstyled components">
+                        <li class="">
+                            <a href="/businessforms">
+                                    <span class="material-icons-outlined cbs-text-gray-dark"> home</span>
+                                Home
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="/businessforms/Request">
+                                    <span class="material-icons-outlined cbs-text-orange"> description</span>
+                                My Request
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="/businessforms/Request/ApprovalList">
+                                    <span class="material-icons-outlined cbs-text-blue"> description</span>
+                                View and Approve
+                            </a>
+                        </li>
+                    <li>
+                        <a href="#Administrator" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                <span class="material-icons-outlined cbs-text-dark">people_alt</span>
+                            Administrator
+                        </a>
+                        <ul class="collapse list-unstyled " id="Administrator">
+                                    <li class=" sub-item">
+                                        <a href="/businessforms/Request/Review">
+                                            <span class="material-icons-outlined cbs-text-dark">description</span>
+                                        Review Requests</a>
+
+                                    </li>
+                                    <li class=" sub-item">
+                                        <a href="/businessforms/Reports">
+                                            <span class="material-icons-outlined cbs-text-dark">trending_up</span>
+                                        Reports</a>
+
+                                    </li>
+                                    <li class=" sub-item">
+                                        <a href="/businessforms/Settings">
+                                            <span class="material-icons-outlined cbs-text-dark">settings</span>
+                                        Settings</a>
+
+                                    </li>
+                        </ul>
+                    </li>
+                        <li class="">
+                            <a href="/businessforms/Form">
+                                    <span class="material-icons-outlined cbs-text-teal"> description</span>
+                                Developers
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="/businessforms/Home/Exit">
+                                    <span class="material-icons-outlined cbs-text-gray-dark"> exit_to_app</span>
+                                Exit
+                            </a>
+                        </li>
+
+
+    </ul>
+
+</nav>
+
+            <div class="container-fluid outerContainer" id="containerBody">
+
+            
+<p>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+        </symbol>
+        <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+        </symbol>
+        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+        </symbol>
+        
+    </svg>
+
+
+</p>
+
+      
+                <main role="main" class="pb-3 pt-3">
+
+                    
+
+
+
+
+<input id="UserPositionId" name="UserPositionId" type="hidden" value="68113" />
+<input id="objectGUID" name="objectGUID" type="hidden" value="{145A0E71-6F45-43F8-BC7B-9E86CE6EF7DB}" />
+
+<input id="UserIdentityName" value="VIHA\GMartinsde" type="hidden"/>
+<input id="UserIdentityDisplayName" value="Martins de Oliveira, Gerson" type="hidden"/>
+
+<input id="username" class="formfield" hidden type="text" name="UserName" value="GMartinsde" />
+<input id="employeenumber" hidden type="text" name="EmployeeNumber" value="System.String[]" />
+<input id="displayname" hidden type="text" name="DisplayName" value="Martins de Oliveira, Gerson" />
+<input id="emailaddress" hidden type="text" name="EmailAddress" value="Gerson.MartinsdeOliveira@islandhealth.ca" />
+<input id="vehicleallowance" hidden type="text" name="VehicleAllowance" value="" />
+<input id="grpMemberRole" hidden type="text" name="GrpMemberRole" value="" />
+<input id="formId" hidden type="number" data-val="true" data-val-required="The formId field is required." name="formId" value="21" />
+<input id="TblWorkflowNameId" hidden type="number" data-val="true" data-val-required="The TblWorkflowNameId field is required." name="TblWorkflowNameId" value="43" />
+
+<input id ="approverListUpdated" hidden />
+
+<div id="claimstatus"></div>
+
+    <h4 style="text-align:center"> Occupational Hazard Report</h4>
+
+<br />
+
+<!--
+    BEGIN OHR HTML CODE
+-->
+<form class="needs-validation" method="post" id="containerForm">
+    <style>
+        .custom_mb2 {
+            margin-bottom: 8px; /* mb-2 is equivalent to 8px in Bootstrap */
+            }
+    
+        .required::after {
+            content: " *";
+            color: red;
+        }
+    
+        .invalid-feedback {
+                display: none;
+            }
+            input:invalid ~ .invalid-feedback,
+            select:invalid ~ .invalid-feedback {
+                display: block;
+            }
+
+            h5{
+                color: black;}
+
+        select {
+            -webkit-appearance: none; 
+            -moz-appearance: none;
+            appearance: none;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding-right: 30px; 
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KPHBhdGggZD0iTTE0LjM2NiA2LjU2N2MtLjE5OC0uMTk4LS41MTktLjE5OC0uNzE3IDBMMTAgMTAuMjgzIDYuMzUyIDYuNTY3Yy0uMTk4LS4xOTgtLjUxOS0uMTk4LS43MTcgMCAuMTk4LjE5OC4xOTguNTE5IDAgLjcxN0w5LjYyMSAxMSAxNC4zNjcgNi43MjVjLjE5OC0uMTk4LjE5OC0uNTE5IDAtLjcxNyIvPgo8L3N2Zz4=');
+            background-position: right 10px center; /* Position the arrow */
+            background-repeat: no-repeat;
+            }
+
+        select::-ms-expand {
+            display: none; /* Hide the default arrow in Internet Explorer */
+        }
+
+    </style>
+
+    <div class="IHBF">
+        <div class="container">
+            <div class="Ihbf_Intro">
+                <div class="row">
+                    <div class="col-12">
+                        <em>
+                            <p>
+                                Use this form to report occupational hazards that pose risk to <strong><u>staff</u></strong>. If you require assistance with completing this form, please contact your supervisor, manager, or local Prevention Advisor.
+                            </p>
+                            <p>
+                                In accordance with Privacy Legislation this report <strong><u>must not</u></strong> contain any personal information or identifiers (e.g. name, address, room number) pertaining to a patient, client, resident, visitor, or other staff.
+                            </p>
+                            <p>
+                                For additional information and instruction please visit: <a href="https://intranet.islandhealth.ca/safety/reporting/Pages/hazard-report.aspx">Occupational Hazard Reports (IslandHealth.ca)</a>
+                            </p>
+                        </em>
+                    </div>
+                </div>
+                <br />
+            </div>
+            <div class="Ihbf_EmployeeSection">
+                <h5>Employee Information</h5>
+                <hr />
+                <div class="row ">
+                    <div class="col-2">
+                        <div class="form-check">
+                            <label for="remain-anonymous" class="form-check-label" title="Check this box if you prefer not to reveal your identity.">
+                                <input type="checkbox" class="form-check-input formfield " id="remain-anonymous" name="RemainAnonymous" value="" title="Check this box if you prefer not to reveal your identity."> Remain Anonymous
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div id="employee-information-div" style="display: block;">
+                    <div class="mb-2"><em><small>If you have selected to remain anonymous your name will not show up in the report sent to Manager.</small></em></div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="employee-full-name">Employee Name</label>
+                            <input name="EmployeeFullName" class="form-control custom_mb2 formfield" id="employee-full-name"  disabled>
+                            <label for="employee-positon">Position</label>
+                            <input name="EmployeePositon" class="form-control custom_mb2 formfield" id="employee-position" disabled>
+                            <label for="employee-email">Email</label>
+                            <input name="EmployeeEmail" class="form-control custom_mb2 formfield" id="employee-email" disabled>
+                            <label for="employee-dept">Cost Center</label>
+                            <input name="EmployeeDept" class="form-control custom_mb2 formfield" id="employee-dept" disabled>
+                        </div>
+                        <div class="col-6">
+                            <label for="employee-number">Employee Number</label>
+                            <input name="EmployeeNumber" class="form-control custom_mb2 formfield" id="employee-number" disabled>
+                            <label for="employee-collective-agreement">Collective Agreement</label>
+                            <input name="EmployeeCollectiveAgreement" class="form-control custom_mb2 formfield" id="employee-collective-agreement" disabled>
+                            <label for="employee-phone">Phone Number</label>
+                            <input name="EmployeePhone" class="form-control custom_mb2 formfield" id="employee-phone" disabled>
+                            <label for="employee-manager-name">Manager Name</label>
+                            <input name="EmployeeManagerName" class="form-control custom_mb2 formfield" id="employee-manager-name" disabled>
+                            <div id="proxyInputDiv">
+                                <label for="proxy-full-name">Proxy by</label>
+                                <input name="ProxyFullName" class="form-control custom_mb2 formfield" id="proxy-full-name" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Ihbf_LocationSection">
+                <h5>Hazard Location</h5> 
+                <hr />
+                <!-- <label style="font-style: italic;">* Review hazard location information to ensure it is correct. Select 'Change Hazard Location' below if edits are required.</label> -->
+                <div class="row">
+                    <div class="col-6">
+                        <label for="location-facility">Facility/Homesite <em><small> If the hazard exists at a non-Island Health worksite, select your homesite</small></em></label>
+                        <!-- <label></label>     -->
+                        <select name="LocationFacility" id="location-facility" class="form-control custom_mb2 LocationData formfield" disabled>
+                            <option value="1">Option 1</option>
+                        </select>
+                        <input type="hidden" name="LocationFacilityName" id="location-facility-name" value="" class="formfield" />
+                        <label for="location-geograph">Geography</label>
+                        <select name="LocationGeograph" id="location-geograph" class="form-control custom_mb2 formfield" disabled>
+                            <option value="1">Option 1</option>
+                        </select>
+                        <input type="hidden" name="LocationGeographName" id="location-geograph-name" value="" class="formfield" />
+                    </div>
+                    <div class="col-6">
+                        <label>Building</label>
+                        <select name="LocationBuilding" id="location-building" class="form-control custom_mb2 LocationData formfield" disabled>
+                            <option value="1">Option 1</option>
+                        </select>
+                        <input type="hidden" name="LocationBuildingName" id="location-building-name" value="" class="formfield"/>
+                        <label>Program/Department</label>
+                        <select name="LocationProgram" id="location-program" class=" form-control custom_mb2 formfield" disabled>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="location-description" class="required">Location Description</label>
+                        <textarea name="LocationDescription" id="location-description" class="form-control custom_mb2 formfield" rows="5" required></textarea>
+                        <div class="invalid-feedback">This field is required</div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-2">
+                        <button id="btnLocationToggle" type="button" class="btn btn-outline-primary" onclick="changeLocation();">Change Location</button>
+                    </div>
+                </div>
+                <br />
+            </div>
+            <br />
+            <div class="Ihbf_FormDataSection">
+                <h5>Hazard Details</h5>
+                <hr />
+                <div class="row">
+                    <div class="col-6">
+                        <label for="hazard-date">Date Hazard Discovered</label>
+                        <input type="date" name="HazardDate" id="hazard-date" class="form-control  custom_mb2 formfield" />
+
+                    </div>
+                    <div class="col-6">
+                        <label for="report-date">Date of Report</label>
+                        <input type="date" name="ReportDate" id="report-date" class="form-control  custom_mb2 formfield" disabled />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="was-another-org">Was another organization involved?</label>
+
+                        <div class="custom_mb2">
+                            <input type="radio" id="was-another-org-no" name="WasAnotherOrg" value="No" checked>
+                            <label for="was-another-org-no">No</label>
+
+                            <input class="ms-2 formfield" type="radio" id="was-another-org-yes" name="WasAnotherOrg"  value="Yes">
+                            <label class="custom_mb2" for="was-another-org-yes">Yes</label>
+
+                            <div class="custom_mb2" id="was-another-org-name-div" style="display:none;">
+                                <label for="was-another-org-name" class="required">If YES, provide name of organization</label>
+                                <input type="text" id="was-another-org-name" name="WasOrganizationName" class="form-control " />
+                                <div class="invalid-feedback">This field is required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <label for="was-harmed">Was anyone harmed by the hazard/unsafe behavior?</label>
+                        <div class="custom_mb2">
+                            <input type="radio" id="was-harmed-no" name="WasHarmed" value="No" class="formfield" checked>
+                            <label for="was-harmed-no">No</label>
+
+                            <input class="ms-2 formfield" type="radio" id="was-harmed-yes" name="WasHarmed" value="Yes"
+                                title="If a staff member was harmed, they must report to Provincial Workplace Health Contact Centre 1(866) 922-9464. If a patient/resident/client/visitor was harmed, a PSLS report must be completed.">
+                            <label for="was-harmed-yes" class="custom_mb2">Yes</label>
+
+                            <div class="row" style="display: none;" id="was-harmed-div">
+                                <!-- <label class="required">If YES, indicate who was harmed</label> -->
+                                <label class="mb-3">
+                                    <em>If YES, indicate who was harmed:</em>
+                                    <br>
+                                    <em>
+                                        <span style="color: red;">Important Reminder:</span> 
+                                        If a staff member was harmed, they must report to the Provincial Workplace Health Contact Centre 1.866.922.9464. If a patient/resident/client/visitor was harmed, a PSLS report must be completed.
+                                    </em>
+                                </label>
+                                <div class="invalid-feedback-checkbox-harmed" style="display: none; color: red;">Please select at least one option</div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input ckeck-group-harmed formfield" id="harm-island-health-staff" name="HarmIslandHealthStaff" value="">
+                                            <label class="form-check-label" for="harm-island-health-staff">Island Health Staff</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input ckeck-group-harmed formfield" id="harm-medical-staff" name="HarmMedicalStaff" value="">
+                                            <label class="form-check-label" for="harm-medical-staff">Medical Staff</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input ckeck-group-harmed formfield" id="harm-agency-nurse" name="HarmAgencyNurse" value="">
+                                            <label class="form-check-label" for="harm-agency-nurse">Agency Nurse</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input ckeck-group-harmed formfield" id="harm-contractor" name="HarmContractor" value="">
+                                            <label class="form-check-label" for="harm-contractor">Contractor</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input ckeck-group-harmed formfield" name="HarmPatientClientResident" id="harm-patient-client-resident" value="">
+                                            <label class="form-check-label" for="harm-patient-client-resident">Patient/Client/Resident</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input ckeck-group-harmed formfield" name="HarmVolunteer" id="harm-volunteer" value="">
+                                            <label class="form-check-label" for="harm-volunteer">Volunteer</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input ckeck-group-harmed formfield" name="HarmVisitor" id="harm-visitor" value="">
+                                            <label class="form-check-label" for="harm-visitor">Visitor</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input ckeck-group-harmed formfield" name="HarmOther" id="harm-other" value="">
+                                            <label class="form-check-label" for="harm-other">Other</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="form-check-label required" title="Indicate all applicable items and describe below."><strong>Hazard Type</strong><em><small> Indicate all applicable items and describe below</small></em></label>
+                        <div class="invalid-feedback-checkbox-hazard" style="display: none; color: red;">Please select at least one option</div>
+                        <div class="col-4 mt-2">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="ViolenceAggression" id="violence-aggression" value="">
+                                        <label class="form-check-label">Violence/Aggression</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 ">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="SlipTripFall" id="slip-trip-fall" value="">
+                                        <label class="form-check-label">Slip/Trip/Fall</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 ">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="ErgonomicPatientHandling" id="ergonomic-patient-handling" value="">
+                                        <label class="form-check-label">Ergonomic - Patient Handling</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 ">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="ErgonomicMaterialsHandling" id="ergonomic-materials-handling" value="">
+                                        <label class="form-check-label">Ergonomic - Materials Handling</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 ">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="ErgonomicOffice" id="ergonomic-office" value="">
+                                        <label class="form-check-label">Ergonomic - Office</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 ">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="PsychologicalHealthSafety" id="psychological-health-safety" value="">
+                                        <label class="form-check-label">Psychological Health & Safety</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="BiologicalInfectiousAgent" id="biological-infectious-agent" value="">
+                                        <label class="form-check-label">Biological/Infectious Agent</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="HazardousCytotoxicDrugs" id="hazardous-cytototoxy-drugs" value="">
+                                        <label class="form-check-label">Hazardous/Cytotoxic Drugs</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="UnregulatedSubstances" id="unregulated-substances" value="">
+                                        <label class="form-check-label">Unregulated Substances</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="Chemical" id="chemical" value="">
+                                        <label class="form-check-label">Chemical</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="NoiseOrVibration" id="noise-or-vibration" value="">
+                                        <label class="form-check-label">Noise or Vibration</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="AirQualityTemperature" id="air-quality-temperature" value="">
+                                        <label class="form-check-label">Air Quality/Temperature</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 mt-2">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="BuildingInfrastructure" id="building-infrastructure" value="">
+                                        <label class="form-check-label">Building Infrastructure</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="BrokenFaultyEquipmentOrMaterials" id="broken-faulty-equipment-or-materials" value="">
+                                        <label class="form-check-label">Broken/Faulty/Equipment or Materials</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="HitCutStruckCaught" id="hitCut-struck-caught" value="">
+                                        <label class="form-check-label">Hit/Cut/Struck/Caught</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="PersonalProtectiveEquipment" id="personal-protective-equipment" value="">
+                                        <label class="form-check-label">Personal Protective Equipment</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="ElectricalOrOtherenergySource" id="electrical-or-otherenergy-source" value="">
+                                        <label class="form-check-label">Electrical or Other energy Source</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ckeck-group-hazard formfield" name="HazardOther" id="hazard-other" value="">
+                                        <label class="form-check-label">OTHER</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12 custom_mb2">
+                            <label for="loc-description" class="required" title="Describe the hazard\unsafe behavior and its potential to cause, injury, exposure, or illness."><strong>Description</strong> <em><small>Describe the hazard/ unsafe behaviour and its potential to cause injury, exposure, or illness</small></em>  </label>
+                            <textarea rows="5" id="loc-description" name="HazardDescription" class=" form-control formfield" required></textarea>
+                            <small id="feedbackHelp" class="form-text text-muted">
+                                <span style="color: red;">Important Reminder:</span> This report MUST NOT contain any personal information/identification.
+                            </small>
+                            <div class="invalid-feedback">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="" title="Your ideas to address the identified hazard\unsafe behavior."><strong>Safety Ideas</strong><em><small> Your ideas to address the identified hazard/unsafe behaviour</small></em></label>
+                            <textarea rows="5" name="HazardSafetyIdeas" id="hazard-safety-ideas" class=" form-control custom_mb2 formfield"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row custom_mb2">
+                                <label for="name-reported" title="If you choose to report anonymously, this section may be left blank."><strong>LEADER TO WHOM THIS CONCERN WAS REPORTED</strong> <em><small>If you have chosen to report anonymously, this section may be left blank.</small></em></label>
+                            </div>
+                             
+                        </div>
+                        <div class="col-6">
+                            <label>Name</label>
+                            <input name="ReportedLeaderName" class="form-control custom_mb2 autocomplete autocomplete-wrapper formfield" id="name-reported" style="z-index:999;">
+                        </div>
+                        <div class="col-6">
+                            <label for="reported-leader-date">Date Reported to Leader</label>
+                            <input type="date" name="ReportedLeaderDate" id="reported-leader-date" class="form-control  custom_mb2 formfield" />
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="Ihbf_ManagerSection" style="display: block;">
+                <br />
+                <h5>Responding Leader</h5>
+                <p>
+                    <em>
+                        Use this form to document your follow-up on reported occupational hazards that pose risk to <strong><u>staff.</u></strong> If you require assistance with completing this form, please contact your supervisor, manager, or local Prevention Advisor. In accordance with Privacy Legislation this report <strong><u>must not</u></strong> contain any personal information or identifiers (e.g. name, address, room number) pertaining to a patient, client, resident, visitor, or other staff. <br> For additional information and instruction please visit: <a href="https://intranet.islandhealth.ca/safety/reporting/Pages/hazard-report.aspx" target="_blank">Occupational Hazard Reports (islandhealth.ca)</a>
+                    </em>
+                </p>
+                
+                <hr />
+                <div class="">
+                    <div class="row">
+                        <div class="col-12 custom_mb2">
+                            <label for="corrective-actions">
+                                <strong>CORRECTIVE ACTIONS</strong> <em><small>Describe the response(s) and corrective action(s) taken to address concern(s). Include name of person responsible and expected completion date for each corrective action listed.</small></em>
+                            </label>
+                            <textarea rows="5" id="corrective-actions" name="CorrectiveActions" class="form-control formfield" required></textarea>
+                            <small id="feedbackHelp" class="form-text text-muted">
+                                <span style="color: red;">Important Reminder:</span> This report MUST NOT contain any personal information/identifiers (e.g. names, room numbers, addresses).
+                            </small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="contributing-factors">
+                                <strong>CONTRIBUTING FACTORS</strong><em><small> Identify factors that may have caused or contributed to the hazard/unsafe behaviour.</small></em>
+                            </label>
+                            <textarea rows="5" name="ContributingFactors" id="contributing-factors" class="form-control custom_mb2 formfield"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="additional-details" >
+                                <strong>ADDITIONAL DETAILS</strong><em><small> Add additional details pertaining to this report if applicable.</small></em>
+                            </label>
+                            <textarea rows="5" name="AdditionalDetails" id="additional-details" class="form-control custom_mb2 formfield"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!-- <hr /> -->
+            </div>
+            <div class="Ihbf_Footer" style="display: none">
+                <div class="row">
+                    <div class="col-12">
+                    </div>
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+    <br />
+    <br />
+
+
+
+        <script>
+            // my JavaScript get references
+            const wasAnotherOrgNo = document.getElementById('was-another-org-no');
+            const wasAnotherOrgYes = document.getElementById('was-another-org-yes');
+            const wasAnotherOrgNameDiv = document.getElementById('was-another-org-name-div');
+            const remainAnonymous = document.getElementById('remain-anonymous');
+            const employeeInformationDiv = document.getElementById('employee-information-div');
+            let isVisibleHarmed = false;
+
+            // Add event listeners 
+            wasAnotherOrgNo.addEventListener('change', function() {
+                if (this.checked) {
+                    wasAnotherOrgNameDiv.style.display = 'none';
+                }
+            });
+        
+            wasAnotherOrgYes.addEventListener('change', function() {
+                if (this.checked) {
+                    wasAnotherOrgNameDiv.style.display = 'block';
+                }
+            });
+
+            remainAnonymous.addEventListener('change', function() {
+                if (this.checked) {
+                    employeeInformationDiv.style.display = 'none';
+                } else {
+                    employeeInformationDiv.style.display = 'block';
+                }
+            });
+
+
+
+            // get references
+            const wasHarmedNo = document.getElementById('was-harmed-no');
+            const wasHarmedYes = document.getElementById('was-harmed-yes');
+            const wasHarmedDiv = document.getElementById('was-harmed-div');
+        
+            // Add event listeners 
+            wasHarmedNo.addEventListener('change', function() {
+                if (this.checked) 
+                {
+                    wasHarmedDiv.style.display = 'none';
+                    isVisibleHarmed = false;
+
+                    let checkboxesHarmed = document.querySelectorAll('.ckeck-group-harmed');    
+                    let invalidFeedbackHarmed = document.querySelector('.invalid-feedback-checkbox-harmed');
+
+                    checkboxesHarmed.forEach(function(checkbox){
+                        checkbox.checked = false;
+                        checkbox.classList.remove('is-invalid','is-valid');
+                    });
+                    invalidFeedbackHarmed.style.display = 'none';
+
+                }
+            });
+        
+            wasHarmedYes.addEventListener('change', function() {
+                if (this.checked) 
+                {
+                    wasHarmedDiv.style.display = 'block';
+                    isVisibleHarmed = true;
+                }
+            });
+
+            var today = new Date();
+
+            // Format YYYY-MM-DD
+            var year = today.getFullYear();
+            var month = ('0' + (today.getMonth() + 1)).slice(-2); // Add leading zero 
+            var day = ('0' + today.getDate()).slice(-2); 
+
+            // Set the value
+            document.getElementById('report-date').value = `${year}-${month}-${day}`;
+            document.getElementById('hazard-date').value = `${year}-${month}-${day}`;
+            document.getElementById('reported-leader-date').value = `${year}-${month}-${day}`;
+
+            
+            //get reference
+            const employeePosition = document.getElementById('employee-position');
+
+            // temporay code - test button
+            document.getElementById("validate").addEventListener("click", function() {
+                validateForm();
+            });
+
+            function validateForm() 
+            {
+                let formIsValid = true;
+
+                // Apply validation class for all other elements (except checkboxes)
+                const elements = document.querySelectorAll("input[required], select[required], textarea[required]");
+                elements.forEach(function(element) {
+                    if (!element.value || element.value === "") {
+                        element.classList.add("is-invalid");
+                        formIsValid = false;
+                    } else {
+                        element.classList.remove("is-invalid");
+                        element.classList.add("is-valid");
+                    }
+                });
+
+                // Instance elements
+                const checkboxesHarmed = document.querySelectorAll('.ckeck-group-harmed');
+                const invalidFeedbackHarmed = document.querySelector('.invalid-feedback-checkbox-harmed');
+
+                const checkboxesHazard = document.querySelectorAll('.ckeck-group-hazard');
+                const invalidFeedbackHazard = document.querySelector('.invalid-feedback-checkbox-hazard');
+
+                let isCheckedHarmed = false;
+                let isCheckedHazard = false;
+
+                // HARMED - Check if at least one checkbox is checked
+                if (isVisibleHarmed) {
+                    checkboxesHarmed.forEach(function(checkbox) {
+                        if (checkbox.checked) {
+                            isCheckedHarmed = true;
+                        }
+                    });
+
+                    // Apply validation classes
+                    if (!isCheckedHarmed) {
+                        invalidFeedbackHarmed.style.display = 'block';
+                        checkboxesHarmed.forEach(function(checkbox) {
+                            checkbox.classList.add("is-invalid");
+                            checkbox.classList.remove("is-valid");
+                        });
+                        formIsValid = false;
+                    } else {
+                        invalidFeedbackHarmed.style.display = 'none';
+                        checkboxesHarmed.forEach(function(checkbox) {
+                            checkbox.classList.remove("is-invalid");
+                            checkbox.classList.add("is-valid");
+                        });
+                    }
+                }
+
+                // HAZARD - Check if at least one checkbox is checked
+                checkboxesHazard.forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        isCheckedHazard = true;
+                    }
+                });
+
+                // Apply validation
+                if (!isCheckedHazard) {
+                    invalidFeedbackHazard.style.display = 'block';
+                    checkboxesHazard.forEach(function(checkbox) {
+                        checkbox.classList.add("is-invalid");
+                        checkbox.classList.remove("is-valid");
+                    });
+                    formIsValid = false;
+                } else {
+                    invalidFeedbackHazard.style.display = 'none';
+                    checkboxesHazard.forEach(function(checkbox) {
+                        checkbox.classList.remove("is-invalid");
+                        checkbox.classList.add("is-valid");
+                    });
+                }
+
+                return formIsValid;
+            }
+
+
+
+
+
+        </script>
+    </div>
+</form>
+<!--
+    FINISH OHR HTML CODE
+-->
+
+
+
+<input name="__RequestVerificationToken" type="hidden" value="CfDJ8AU4463r98dAi8dlebXsOfo2bL-9HQINBC8IcdzQ05QTh2wMXFR19hILqrKanRSDJQR9-_2F3oChnwzEoPQ0g-Cy-x9hhVW2FBEBnaBQbDMTOsWqsYYSWGEUuYEfPgFI3wH4Mvo6E-T1nnL7CTk__4yaZpugA2u6CR9DbGOUEgCwSnRKShIRkuViId6faY24ig" /></form>
+
+<div id="RecordListBlock"></div>
+<div id="RecordDialog" title="" class="Hidden"></div>
+
+<div class="container-fluid d-md-inline-flex position-relative" id="formActionButtons">
+        <button class="btn btn-outline-primary" id="submitBtn" type="button" onclick="">Submit</button>
+        <button class="btn btn-outline-success" id="saveDraftBtn" type="button" onclick="">Save Draft</button>
+        <button class="btn btn-outline-warning" id="discardChangesBtn" type="button" onclick="">Discard Changes</button>
+        <button class="btn btn-outline-danger" id="cancelBtn" type="button" onclick="">Cancel</button>
+ <div class="position-absolute end-0">
+        <button type="button" id="btnActLog" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#activityLogModal_">View Activity Log</button>
+</div>
+</div>
+
+<div class="modal fade" id="activityLogModal_" tabindex="-1" aria-labelledby="activityLogModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+               <h3 class="modal-title fs-3" id="activityLogModalLabel">Activity Log History</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                 <div class="mvc-grid" data-url="/businessforms/Request/ActivityLog/0"></div>;
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="travelLimitMessageModal" tabindex="-1" aria-labelledby="travelLimitMessageLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+               <h3 class="modal-title fs-3" id="travelLimitMessageLabel">Submit Confirmation</span></h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="submitButtonMessage">Your request has been submitted sccessfully!</p>
+                <div>
+                    <p id="travelLimitMessage">System shows you have used 5000 kms for 2000 and are reaching the 5000 kms travel threshold at the current rate. A different rate may apply and a adjustment will occur when you exceed it.
+                     </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="modalSubmitConfirmBtn" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+                <script src="/businessforms/js/mvc-grid/mvc-grid.js"></script>
+
+                <script>
+                    document.querySelectorAll(".mvc-grid").forEach(element => new MvcGrid(element));
+                </script>
+                </main>
+            </div>
+
+        
+        <script src="/businessforms/lib/jquery-ui/jquery-ui.js"></script>
+        <script src="/businessforms/js/popper.js/umd/popper.js"></script>
+        <script src="/businessforms/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="/businessforms/js/site.js?v=EHqXx-sEIXxDjvTzHkx83cyp3QnXeJb2DaqA5H-oia8"></script>
+
+		<script src="/businessforms/js/settings.js"></script>
+         
+            <script type="importmap">
+                {
+                    "imports": {
+                    "vue": "/businessForms/js/vue.esm-browser.prod.min.js"
+                    }
+                }
+            </script>
+        
+        
+
+    <script>
+        const validateForm = ()=>true
+ $(document).ready(function () {
+     //Javascript here
+
+     var changeLocationJS = function () {
+         alert("Change location called...");
+     };
+
+     changeLocation = changeLocationJS;
+
+     var userInfoCallback = function (data) {
+         var employeeInfo = JSON.parse(JSON.stringify(data[0]));
+         fillEmployeeDetails(employeeInfo);
+         fillLocationDetails(employeeInfo);
+     };
+        var getLoggedInUserInformation = function () {
+            // get either logged in user or proxy user
+            //var userName = $("#UserIdentityName").val();
+            let userName = "VIHA\\" + $("#username").val();
+
+            $.get(baseUrl + "/api/employee/GetEmployeeDetails?userName=" + userName)
+                .done(function (data) {
+                    setTimeout(() => {
+                        userInfoCallback(data);
+                    }, 50);
+                });
+        };
+     var fillEmployeeDetails = function (employee) {
+         // update inputs with data
+         // inputs are disabled by default
+         $("#EmployeeFullName").val(employee.displayName);
+         $("#EmployeeTitle").val(employee.title);
+         $("#EmployeeDept").val(employee.adDepartment);
+         $("#EmployeeCollectiveAgreement").val(employee.collectiveAgreement);
+         $("#EmployeePhoneNumber").val(employee.phoneNumber);
+         $("#EmployeeEmail").val(employee.email);
+         $("#EmployeeNumber").val(employee.employeeNumber);
+
+     };
+
+     var fillLocationDetails = function (facility) {
+         $("#LocationFacility").val(facility.siteName);
+         $("#LocationBuilding").val(facility.buildingName);
+         $("#LocationGeograph").val(facility.geographyName);
+         $("#LocationProgram").val(facility.adDepartment);        }
+
+     var onFormLoad = function () {
+         // pre-load any form fields you need
+         console.log("onFormLoad method called.");
+         //alert("onFormLoad called");
+         getLoggedInUserInformation();
+
+     };
+
+     onFormLoad();
+ });;
+
+        var approverArray = [];
+        var formRetrived = "";
+
+        $(document).ready(function() {
+
+            // $("#viewActivityLogBtn").on('click', function() {
+            //     parent.open('/Request/ActivityLog/' + document.getElementById("claimID").innerHTML)
+            //     //parent.open('/businessforms/Request/ActivityLog/' + document.getElementById("claimID").innerHTML)
+            //     //var url = '/businessforms/Request/ActivityLog'
+            //     //var claimId = document.getElementById("claimID").innerHTML;
+
+            // });
+
+            //get by ID
+            $(".btn-get-request").on("click", function () {
+                //  debugger;
+            //  alert("partial view rendering");
+                var formData = new FormData();
+                var requestID = $(this).attr("data-requestId");
+                var url = '/businessforms/Request/GetRequestById' + '/' + requestID;
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    data: formData,
+                    success: successCallback,
+                    error: errorCallback
+                });
+            });
+              
+            $("#goToPreviousPageBtn").on("click", function () {
+                window.open("https://selfservicecert.viha.ca/SitePages/ReqeClaimSubConfirm.aspx", "_self");
+            });
+
+            $("#goToESSMyRequestBtn").on("click", function () {
+                window.open("https://selfservicecert.viha.ca/SitePages/MyRequests.aspx", "_self");
+            });
+
+            $("#goToESSConfirmBtn").on("click", function () {
+                if (document.getElementById('username').value != 'MKasprzik2') {
+                    window.open("https://selfservicecert.viha.ca/SitePages/ReqeClaimSubConfirm.aspx", "_self");
+                }
+            });
+
+            $("#modalSubmitConfirmBtn").on("click", function () {
+                switch ("") {
+                    case "EET":
+                        parent.open(baseUrl+'/Request/Review/', '_self');
+                        break;
+
+                    case "Approver":
+                        parent.open(baseUrl+'/Request/ApprovalList/', '_self');
+                        break;
+
+                    case "Payroll":
+                        parent.open(baseUrl+'/Request/Review/', '_self');
+                        break;
+
+                    default:
+                if (document.getElementById('username').value != 'MKasprzik2') {
+                    window.open("https://selfservicecert.viha.ca/SitePages/ReqeClaimSubConfirm.aspx", "_self");
+                        };
+                        break;
+                }
+            });
+
+            //insert a new record
+            //update an existing record
+            $("#saveDraftBtn").on("click", function() {
+                if (21 == 2) {
+                    eClaimsSaveDraft()
+                } else {
+                     Swal.fire({  
+                        icon: "question",
+                        html: `Continue to save as a draft?`,
+                        showCloseButton: true,
+                        showCancelButton: true,
+                        focusConfirm: false
+                    }).then(response => { 
+                        if (response.isConfirmed) {
+                            saveDraft()
+                        }
+                    })
+                };  
+                
+            });
+
+            $("#submitBtn").on("click", function() {
+                if (validateForm() == true){
+                    // formId == ID in [Workflows].[REQ].[tbl_Forms] table
+                    if (21 == 2) {
+                        eClaimsSubmit()
+                    } else if (21 == 5) {
+                        if (document.getElementById('acknowledgementCheckbox').checked = true) {
+                            openSpecialLeavesConfirmationModal();
+                        } else {
+                            document.getElementById('acknowledgementCheckbox').classList.add('is-invalid');
+                        }
+                    } 
+                    // else if (21 == 13) 
+                    // {
+                    //     formSubmitFlexWork(formData)
+                    // }
+                    else {
+                        formSubmit()
+                    }
+                }
+            });
+
+            var showTravelLimitMessageModalJS = function () {
+                // claimId, YTDDistance, Year
+                // $('#commitCodeId').val(id);
+                // $('#txtCodeCC').val(code);
+       
+                    $('#travelLimitMessage').html(travelLimitNotes);
+                    $('#submitButtonMessage').html(message);
+                    $('#travelLimitMessageLabel').html(modalTitle);
+  
+
+                $('#travelLimitMessageModal').modal('show');                 
+
+                // show edit modal
+                // $('#travelLimitMessageModal').modal({
+                //     backdrop: 'static',
+                //     keyboard: false,
+                //     show: true
+                // });
+
+            };
+
+            showTravelLimitMessageModal = showTravelLimitMessageModalJS;
+
+            $("#cancelBtn").on("click",function() {
+                if (21 == 2) { 
+                    eClaimsCancelClaim();
+                } else {
+                    cancelForm();       
+                }
+            });
+
+            $("#discardChangesBtn").on("click",function() {
+                discardChanges()
+
+            });
+
+            $(document).ready(function() {
+                var $claimID = $("test");
+                var $claimIDInput = $('#newClaimID');
+
+                $claimIDInput.on('change',function(){
+                    $claimID.text('$'+$claimIDInput.val());
+                });
+            });
+
+            function LoadList() {
+                $("#RecordListBlock").load("/Request/ActivityLog");
+            };
+
+            function resetForm() {
+                $("#requestId").val("");
+                $("#workflowID").val("");
+            };
+
+            function errorCallback() {
+                alert("Something went wrong, please contact the administrator");
+            };
+
+            function successCallback(response) {
+                // debugger;
+                if (response.responseCode == 0) {
+                    resetForm();
+                    alert(response.responseMessage, function () {
+                        //perform remaining logic
+                    });
+                }
+                else {
+                    alert(response.ResponseMessage);
+                }
+            };
+        });
+
+        $(window).bind("load", function () {
+            //formId == 2 eclaims
+            if (0 != 0 ) {
+                if (21 == 2) {
+                    getSavedForm(0);
+                    document.getElementById("claimID").innerHTML = 0;
+                    var cancelBtnCheck = document.getElementById("cancelBtn");
+                    if (cancelBtnCheck != null) {
+                        document.getElementById("cancelBtn").style.display = "inline-block";
+                    }
+
+                } else {
+                    $.ajax({
+                        type: 'GET',
+                        url: `${baseUrl}/api/Form/GetSavedData?formWorkflowId=${0}`,
+                        success: function (res) {
+                            if (res) {
+                                loadFormData(res.formData);
+                            }
+                        }
+                    })
+                }
+            } 
+           
+        });
+
+        function loadFormData(formDataString) {
+            // try {
+                // Parse the JSON data 
+                formDataString = formDataString.replace('<div xmlns="http://www.w3.org/1999/xhtml" hidden="" id="hiddenGlobalLeaveDictionary">', '').replace('</div>','');
+                var formData = JSON.parse(formDataString);
+                if (21 == 5) {
+                    loadData(formData);
+                } else {
+                    for (var key in formDataFields) {
+                        if (formDataFields.hasOwnProperty(key)) {
+                            var value = formDataFields[key];
+                            var elements = document.getElementsByName(key);
+                            if (elements.length > 0) {
+                                var element = elements[0];
+                                if (element.tagName === 'INPUT') {
+                                    if (element.type === 'checkbox' || element.type === 'radio') {
+                                        element.checked = value.includes(element.value);
+                                    } else {
+                                        element.value = value;
+                                    }
+                                } else if (element.tagName === 'SELECT') {
+                                    Array.from(element.options).forEach(option => {
+                                        option.selected = value.includes(option.value);
+                                    });
+                                } else if (element.tagName === 'TEXTAREA') {
+                                    element.value = value;
+                                }
+                            }
+                        }
+                    } 
+                }
+                // Loop through formData and set values in the form input fields
+                    
+            // } catch (error) {
+            //     console.error("Error parsing JSON data:", error);
+            // }
+        }
+
+        function getSavedForm (claimId) {
+            var claimId = claimId;
+            var url = '/businessforms/Form/GetFormContent';
+            $.ajax({
+                type: 'GET',
+                url: url,
+                contentType: false,
+                processData: false,
+                cache: false,
+                data: jQuery.param({
+                    claimId: claimId
+                }),
+                success: (function (data) {
+                    formRetrived = data.approverListJson;
+                    var StringformRetrieval = JSON.parse(formRetrived);
+                    //document.getElementById('FormContent').innerHTML = StringformRetrieval;
+                    document.getElementById('claimStatus').innerHTML = data.claimStatus;
+                    document.getElementById('bannerMessage').innerHTML = data.bannerMessageReset;
+                    loadData(StringformRetrieval);
+                    document.getElementById('claimID').innerHTML = 0;
+                    //toggleFooterButtons()
+                }),
+                error: function () {
+                    alert('not found formid')
+                }
+            });
+        };
+
+        function eClaimsCancelClaim(){
+
+            document.getElementById('claimStatus').innerHTML = "Cancelled";
+
+                // saveClaim();
+                var formData = "";
+                var serializedForm = "";
+
+                var userName = document.getElementById("username").value;
+                var eClaimStatus = "Cancelled";
+                var claimID = document.getElementById("claimID").innerHTML;
+
+                if (confirm('Do you want to proceed to cancel the claim?') == true) {
+                    $.ajax({
+                        type:"PUT",
+                        url: '/businessforms/Request/CancelRequest',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        processData: false,
+                        cache: false,
+                        data: jQuery.param({claimID: claimID,nodeName: eClaimStatus, userName:userName, formData: formData, serializedForm: serializedForm}),
+                        success: function (response){
+
+                                document.getElementById("cancelBtn").disabled = true;
+                                // alert("The claim is cancelled.");
+
+                                // CancelClaim();
+
+                                message = response.responseMessage+".";
+                                modalTitle = response.modalTitle;
+                                travelLimitNotes = response.additionalNotes;
+                                 // console.log('YtdKmYear: ', y);
+                                    // console.log('additionalNotes: ', travelLimitNotes, 'responseMessage: ', response);
+                                    // console.log('returned: ', response);                                             
+                                showTravelLimitMessageModal(modalTitle, message, travelLimitNotes);
+
+                                },
+                        error: function () {
+                            alert("Error has occurred.");
+                        }
+                    });
+                }
+        };
+
+        function eClaimsSaveDraft(){
+                var claimStatus = document.getElementById("claimStatus").innerHTML
+
+                 openConfirmationModal(document.getElementById('saveDraftBtn'));
+
+                if (claimStatus == "Denied" || claimStatus == "Declined by Approver" || claimStatus == "Declined by System" || claimStatus == "Cancelled")
+                
+                {
+                    document.getElementById("claimStatus").innerHTML ="Draft";
+   
+                    removeApproversFromTableAndDictionary();             
+                
+                }
+                 
+                saveClaim();
+
+                var xmlDocument = "containerForm";
+                var formData = new XMLSerializer().serializeToString(document.getElementById("hiddenGlobalClaimDictionary"));
+                var serializedForm = new XMLSerializer().serializeToString(document.getElementById("containerPrimary"));
+                var userName = document.getElementById("username").value;
+                var claimID = document.getElementById("claimID").innerHTML
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/businessforms/Request/SaveDraft',
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    processData: false,
+                    cache: false,
+                    data: jQuery.param({claimID: claimID, userName: userName, formData: formData, serializedForm: serializedForm}),
+                    success: function (data){
+
+                            var url = '/businessforms/Form/GetRequestId';
+                            $.ajax({
+                                type: 'POST',
+                                url: url,
+                                contentType: false,
+                                processData: false,
+                                cache: false,
+                                data: formData,
+                                success: function (RequestID){
+                                    //continue to save a draft, it returns a null
+                                    if (RequestID != null) { 
+                                        document.getElementById('claimID').innerHTML = RequestID;
+                                    };
+                                },
+                                });
+                            },
+                    error: function () {
+                        alert("Error has occurred.");
+                    },
+                });
+        };
+
+        function saveDraft(){ 
+            // called in JS
+            var userName = document.getElementById("username").value;            
+            var formId = $('#formId').val();            
+            var containerFormElementId = "containerForm";
+            var serializedForm = new XMLSerializer().serializeToString(document.getElementById(containerFormElementId));
+
+            // Get form element
+            var form = document.getElementById(containerFormElementId);
+            // Create FormData object to easily get form values
+            var formData = new FormData(form); 
+            // Create empty JSON object
+            var formDataFields = {};
+            // Iterate over FormData entries and populate JSON object
+            formData.forEach(function(value, key){
+                if (key == '__RequestVerificationToken')
+                    return;
+                formDataFields[key] = value;
+            });              
+            const formDataJson = JSON.stringify(formDataFields);
+            
+            var fieldNames = document.getElementsByClassName("formfield"); 
+            // Create an object to hold form fields
+            var formFields = [];
+            // Iterate over selected form fields and append to FormData
+            for (var i = 0; i < fieldNames.length; i++) {
+                var field = fieldNames[i];
+                formFields.push(
+                    {
+                        key: field.name,
+                        value: field.value
+                    });
+            } 
+
+            // Convert the object to a JSON string
+            var formFieldsJson = JSON.stringify(formFields);
+
+            Swal.fire({ text: "Your submission is being processed. Please wait...", showConfirmButton: false });
+            setTimeout(() => { 
+                $.ajax({
+                    type: "PUT",
+                    url: '/businessforms/Request/SaveAsDraft', 
+                    data: {
+                        formId, 
+                        userName,
+                        serializedForm,
+                        formData: formDataJson,
+                        formFields: formFields
+                    },
+                    success: function (response) {
+                        Swal.fire("Your request has been successfully submitted.").then((result) => {
+                            if(result.isDismissed || result.isConfirmed)
+                                location.reload();
+                        });
+                    },
+                    error: function (error) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Something went wrong! " + error, 
+                        });
+                    }
+                });    
+            }, 500);      
+        }
+        
+        function formSubmit(formDataJson) {
+            // called in JS
+            var userName = document.getElementById("username").value;
+            var formId = $('#formId').val();
+            var formWorkflowId = $('#formWorkflowId').val();
+            var formHistoryId = $('#formHistoryId').val();
+            var containerFormElementId = "containerForm";
+            var serializedForm = new XMLSerializer().serializeToString(document.getElementById(containerFormElementId));
+
+            if (!formDataJson) { 
+                // Get form element
+                var form = document.getElementById(containerFormElementId);
+                // Create FormData object to easily get form values
+                var formData = new FormData(form);
+                // Create empty JSON object
+                var formDataFields = {};
+                // Iterate over FormData entries and populate JSON object
+                form.querySelectorAll('input, select, textarea').forEach(function (element) {
+                    var key = element.name;
+                    var value;
+                    if (element.type === 'checkbox') {
+                        if (element.checked) {
+                            if (!formDataFields[key]) {
+                                formDataFields[key] = [];
+                            }
+                            formDataFields[key].push(element.value);
+                        }
+                    }
+                    else if (element.type === 'radio') {
+                        if (element.checked) {
+                            value = element.value;
+                            formDataFields[key] = value;
+                        }
+                    }
+                    else if (element.tagName === 'SELECT' && element.multiple) {
+                        value = [];
+                        for (var i = 0; i < element.options.length; i++) {
+                            if (element.options[i].selected) {
+                                value.push(element.options[i].value);
+                            }
+                        }
+                        formDataFields[key] = value;
+                    } else {
+                        value = element.value;
+                        formDataFields[key] = value;
+                    }
+
+                    if (key == '__RequestVerificationToken')
+                        return;
+                });
+                formDataJson = JSON.stringify(formDataFields);
+            }
+            
+            var fieldNames = document.getElementsByClassName("formfield"); 
+            // Create an object to hold form fields
+            var formFields = [];
+            // Iterate over selected form fields and append to FormData
+            for (var i = 0; i < fieldNames.length; i++) {
+                var field = fieldNames[i];
+                formFields.push(
+                    {
+                        key: field.name,
+                        value: field.value
+                    });
+            } 
+
+            // Convert the object to a JSON string
+            var formFieldsJson = JSON.stringify(formFields);
+
+            Swal.fire({ text: "Your submission is being processed. Please wait...", showConfirmButton: false });
+            setTimeout(() => { 
+                $.ajax({
+                    type: "PUT",
+                    url: '/businessforms/Request/SubmitFormRequest', 
+                    data: {
+                        formId, 
+                        formWorkflowId,
+                        userName,
+                        serializedForm,
+                        formData: formDataJson,
+                        formFields: formFields
+                    },
+                    success: function (response) {
+                        Swal.fire("Your request has been successfully submitted.").then((result) => {
+                            if(result.isDismissed || result.isConfirmed)
+                                location.reload();
+                        });
+                    },
+                    error: function (error) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Something went wrong! " + error, 
+                        });
+                    }
+                });    
+            }, 500);            
+        }         
+
+        function formSubmitFlexWork({ formData, status, formId, formWorkflowId, isApproved, approval, approversNote}) {
+
+            //TODO: Do we change this to get the userName from form?
+            var userName = document.getElementById("username").value;
+            var formId = $('#formId').val();
+            var containerFormElementId = "containerForm";
+            var serializedForm = new XMLSerializer().serializeToString(document.getElementById(containerFormElementId));
+
+            //Form for approval - approval is json with approver details
+            if (approval != null) {
+                $.ajax({
+                    type: "PUT",
+                    url: '/businessforms/Request/SubmitApproval',
+                    data: {
+                        formId, 
+                        formWorkflowId, 
+                        userName, 
+                        formData, 
+                        isApproved, 
+                        approval, approversNote,
+                        form: serializedForm
+                    },
+                })
+                    .done(() => { 
+                        Swal.fire("Your request has been successfully submitted.");
+                        setTimeout(() => { 
+                            location.reload();
+                        },1000)
+                    });
+
+                return;
+            }
+
+            //New form submission
+            //status - save or submit (draft or final)
+            $.ajax({
+                type: "PUT",
+                url: '/businessforms/Request/SubmitFormRequestFlexWork', 
+                data: { 
+                    formId: formId, 
+                    userName: userName, 
+                    formData: formData, 
+                    status,
+                    form: serializedForm
+                }                
+            })
+              .done(() => { 
+                        Swal.fire("Your request has been successfully submitted.");
+                        setTimeout(() => { 
+                           location.reload();
+                        },1000)
+                    });
+        }
+
+        function specialLeavesSubmit(confirmSubmit) {
+            if (confirmSubmit == false) {
+                console.log('not confirmed');
+                return;
+            }
+            
+            var userName = document.getElementById("username").value;
+            console.log('userName: ', userName);
+            var xmlDocument = "containerForm";
+            console.log('specialLeavesSubmit globalLeaveDictionary: ', globalLeaveDictionary);
+
+            saveForm();
+            var formDict = new XMLSerializer().serializeToString(document.getElementById("hiddenGlobalLeaveDictionary"));
+            var rID = "";
+            
+            $.ajax({
+                type: 'PUT',
+                url: '/businessforms/Request/SpecialLeaveCreateRequest',
+                contentType: false,
+                processData: false,
+                cache: false,
+                data: formDict,
+                success: function (leaveRequest) {
+                    //console.log('leaveRequest: ', leaveRequest);
+                    $.ajax({
+                        type: 'POST',
+                        url: '/businessforms/Form/GetRequestId',
+                        contentType: false,
+                        processData: false,
+                        cache: false,
+                        data: formDict,
+                        success: function (RequestID) {
+                            console.log('RequestID: ', RequestID);
+                            document.getElementById('formIdValue').innerHTML = parseInt(RequestID)// + 1;
+                            saveForm();
+                            formDict = new XMLSerializer().serializeToString(document.getElementById("hiddenGlobalLeaveDictionary"));
+                            serializedForm = new XMLSerializer().serializeToString(document.getElementById("containerPrimary"));
+                            var fieldNamePairsArray = new Array();
+                            var fieldValuePairsArray = new Array();
+                            var fieldNames = document.getElementsByClassName("formfield");
+                            //console.log('fieldNames: ', fieldNames);
+                            if (fieldNames.length !== 0) {
+                                for (let i = 0; i < fieldNames.length; i++) {
+                                    var fName = fieldNames[i].id || "no name";
+                                    var fVal = fieldNames[i].innerHTML || fieldNames[i].value || "no value";
+                                    //console.log("fName: ", fName)
+                                    //console.log("fVal: ", fVal)
+                                    if (fVal !== "no value") {
+                                        fieldNamePairsArray.push(fName);
+                                        fieldValuePairsArray.push(fVal);
+                                    } else {
+                                        fieldNamePairsArray.pop();
+                                        fieldValuePairsArray.pop();
+                                    }
+                                }
+                            }
+                            $.ajax({
+                                type: "PUT",
+                                url: '/businessforms/Request/SubmitSpecialLeaveRequest',
+                                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                                processData: false,
+                                cache: false,
+                                async: false,
+                                data: jQuery.param({ userName: userName, fieldsNameArray: fieldNamePairsArray, fieldsArray: fieldValuePairsArray, formData: formDict, serializedForm: serializedForm, request: leaveRequest }),
+                                success: function (response) {
+                                    console.log('successfully submitted');
+                                    if (document.getElementById('username').value != 'MKasprzik2') {
+                                        window.open("https://selfservicecert.viha.ca/SitePages/MyRequests.aspx", "_self");
+                                    }
+                                }
+                            });
+
+                        },
+                    });
+                }
+            });       
+        }
+
+        function eClaimsSubmit() {
+            //to capture the recent changes
+            // saveClaim();
+
+            // called in JS
+            var userName = document.getElementById("username").value;
+            var claimantUserName = document.getElementById("UserIdentityName").innerHTML;
+            var eClaimStatus = document.getElementById("claimStatus").innerHTML;
+            var claimID = document.getElementById("claimID").innerHTML;
+            var xmlDocument = "containerForm";
+           // var formData = new XMLSerializer().serializeToString(document.getElementById("hiddenGlobalClaimDictionary"));
+            var formData = globalClaimDictionary;
+            var serializedForm = new XMLSerializer().serializeToString(document.getElementById("containerPrimary"));
+            var fieldNamePairsArray = new Array();
+            var fieldValuePairsArray = new Array();
+            var fieldNames = document.getElementsByClassName("formfield");
+            // passed from the controller directly. should not need it here.
+            var chargeToCC = document.getElementById("chargeToDropdown").value;
+            var attributedCC = document.getElementById('hiddenEmpPerCcDictionary').innerHTML;
+            var attributedAmt = document.getElementById('hiddenCcTotalsDictionary').innerHTML;
+            var ExpenseCC = chargeToCC;
+            var claimAmt = document.getElementById('totalClaimAmount').innerHTML;
+            var jsonTotalbyCc = JSON.stringify(globalCcTotals);
+            var jsonEmpbyCc = JSON.stringify(globalEmpsPerCC);
+            var jsonExpTypeCC = JSON.stringify(globalExpenseTypesPerCC);
+            var approverDecision = "";
+            // form submitted by claimant or EET
+            //if (globalCurrentUserType == 'claimant') {
+            if (document.getElementById('certificationCheckbox').checked == true) {
+	                disableTimeout(document.getElementById('submitBtn'), 1000)
+                }
+
+            if (eClaimStatus == "Declined by Approver" || eClaimStatus == "Declined by System" || eClaimStatus == "Cancelled")
+                
+                {
+                    document.getElementById("claimStatus").innerHTML ="Draft";
+   
+                    removeApproversFromTableAndDictionary();      
+                    
+                    eClaimStatus == 'Draft';
+                
+                }
+
+            if (eClaimStatus == 'Draft') {
+
+                saveClaim();
+                formData = new XMLSerializer().serializeToString(document.getElementById("hiddenGlobalClaimDictionary"));
+                serializedForm = new XMLSerializer().serializeToString(document.getElementById("containerPrimary"));
+
+                $.ajax({
+                    type: "PUT",
+                    url: '/businessforms/Request/SubmitRequest',
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    processData: false,
+                    cache: false,
+                    async: false,
+                    data: jQuery.param({ claimID: claimID, nodeName: eClaimStatus, userName: userName, formData: formData, serializedForm: serializedForm, chargeToCC: chargeToCC, attributedCC: globalCcTotals}),
+                    success: function updateApprover() {
+                        if (document.getElementById('claimID').innerHTML == "Pending") {
+                            var url1 = '/businessforms/Form/GetRequestId';
+                            $.ajax({
+                                type: 'POST',
+                                url: url1,
+                                contentType: false,
+                                processData: false,
+                                cache: false,
+                                data: formData,
+                                success: function (RequestID) {
+                                    console.log('RequestID: ', RequestID)
+                                    document.getElementById('claimID').innerHTML = RequestID;
+                                },
+                                error: function () {
+                                    console.log('error');
+                                },
+                            });
+                        };
+                        
+                        
+                        //this has to run before the yesSubmit
+                        $.ajax({
+                            type: "POST",
+                            async: false,
+                            cache: false,
+                            url: '/businessforms/Form/UpdateApproverList',
+                            data: jQuery.param({ userName: userName, claimantUserName: claimantUserName, ExpenseCC: jsonTotalbyCc, claimAmt: jsonEmpbyCc, ExpTypeCC: jsonExpTypeCC }),
+                            success: function (t) {
+                                approverArray = t;
+                                document.getElementById('approverListUpdated').innerHTML = approverArray;
+                                document.getElementById("cancelBtn").style.display = "inline-block";
+                                openConfirmationModal(document.getElementById('submitBtn'));
+                            },
+                            error: function () {
+                                alert("Post error has occurred.")
+                            }
+                        })
+                    }
+
+                });
+
+                // console.log('d: ', globalClaimDictionary);
+
+            } else if (eClaimStatus == 'Awaiting approval' || eClaimStatus == 'Approved') {
+                //also need to check the user role
+                // this is for approvers && EET team to process in the normal path ...
+                //
+                var approversListString = '';
+                var userRole = 'NotApprover';
+                for (const [key, value] of Object.entries(globalClaimDictionary['approvalTable'])) {
+                    if (approversListString.length > 0) {
+                        approversListString = approversListString + ',' + value['username'];
+                        if (userName == value['username']) { userRole = 'Approver' };
+                    } else {
+                        approversListString = value['username'];
+                        if (userName == value['username']) { userRole = 'Approver' };
+                    }
+                }
+
+                // console.log('userRoleApprover: ', userRole);
+                // console.log('userName: ', userName);
+                // console.log('approversListString: ', approversListString);
+
+                if (userRole == 'Approver' && eClaimStatus == 'Awaiting approval'|| eClaimStatus == 'Approved') {
+                // form submitted by approver of the request
+                    updateDictApproverDecision();
+
+                    // generated a list for js
+
+                    $.ajax({
+                        type: "POST",
+                        async: false,
+                        cache: false,
+                        url: '/businessforms/Form/UpdateApproverList',
+                        data: jQuery.param({ userName: userName, claimantUserName: claimantUserName, ExpenseCC: jsonTotalbyCc, claimAmt: jsonEmpbyCc, ExpTypeCC: jsonExpTypeCC }),
+                        success: function (t) {
+                            approverArray = t;
+                        },
+                        error: function () {
+                            alert("Post error has occurred.")
+                        }
+                    })
+
+                    //console.log('claimID: ', parseInt(claimID));
+                    // console.log('d: ', globalClaimDictionary);
+                    //console.log('formData: ', formData);
+                    eClaimStatus = document.getElementById('claimStatus').innerHTML;
+
+                    if (eClaimStatus == 'Awaiting approval') {
+                        var approverApproved = true;
+                        for (const [key, value] of Object.entries(globalClaimDictionary['approvalTable'])) {
+                            console.log('approvedNo: ', value['approvedNo'])
+                            if (value['approvedNo'] == true) {
+                                approverApproved = false;
+                            }
+                        }
+
+                        if (approverApproved == true) {
+                            approverDecision = "Approved";
+                        } else {
+                            approverDecision = "Denied";
+                        }
+                    } else {
+                        // capture the option by Finance department                  
+                        var e = document.getElementById("financeActionDropdown");
+                        approverDecision = e.options[e.selectedIndex].value;
+
+                    }
+                    if (userRole == 'EET'){
+                        kmRateAdjustment();
+                        console.log('kmRateAdjustment: executed');
+                    }
+
+
+                    saveClaim();
+                    formData = new XMLSerializer().serializeToString(document.getElementById("hiddenGlobalClaimDictionary"));
+                    serializedForm = new XMLSerializer().serializeToString(document.getElementById("containerPrimary"));
+
+                    $.ajax({
+                        type: "PUT",
+                        url: '/businessforms/Request/SubmitRequest',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        processData: false,
+                        cache: false,
+                        async: false,
+                        data: jQuery.param({ claimID: claimID, nodeName: eClaimStatus, userName: userName, formData: formData, serializedForm: serializedForm, approverDecision: approverDecision }),
+                        success: function (response) {
+                            StatusUpdates = response.additionalNotes;
+                            // alert("Post approval results.");
+                            document.getElementById('claimStatus').innerHTML = StatusUpdates;
+
+                            message = response.responseMessage+".";
+                            modalTitle = response.modalTitle;
+                            travelLimitNotes = "";
+                            showTravelLimitMessageModal(modalTitle, message, travelLimitNotes);
+                        }
+
+                    });
+
+                } else if (userRole != 'Approver' && eClaimStatus == 'Awaiting approval') {
+                        //for EET members to pick a different approver.
+                        // //check the role in the controller
+                        //the request is waiting for approvers to response
+                   document.getElementById("claimStatus").innerHTML = "Approved";
+                   approverDecision = 3;
+                    
+                   saveClaim();
+                    formData = new XMLSerializer().serializeToString(document.getElementById("hiddenGlobalClaimDictionary"));
+                    serializedForm = new XMLSerializer().serializeToString(document.getElementById("containerPrimary"));
+
+                    $.ajax({
+                        type: "PUT",
+                        url: '/businessforms/Request/SubmitRequest',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        processData: false,
+                        cache: false,
+                        async: false,
+                        data: jQuery.param({ claimID: claimID, nodeName: eClaimStatus, userName: userName, formData: formData, serializedForm: serializedForm, approverDecision: approverDecision }),
+                        success: function (response) {
+                            StatusUpdates = response.additionalNotes;
+                            // alert("Post approval results.");
+                            document.getElementById('claimStatus').innerHTML = StatusUpdates;
+
+                            message = response.responseMessage+".";
+                            modalTitle = response.modalTitle;
+                            travelLimitNotes = "";
+                            showTravelLimitMessageModal(modalTitle, message, travelLimitNotes);
+                        }
+
+                    });
+
+                    // yesSubmit();
+
+                    }
+                console.log('userRoleNet: ', userRole);
+            } 
+            
+        };
+
+        function yesSubmit() {
+
+            saveClaim();
+
+            var userName = document.getElementById("username").value;
+            var formData = new XMLSerializer().serializeToString(document.getElementById("hiddenGlobalClaimDictionary"));
+            var serializedForm = new XMLSerializer().serializeToString(document.getElementById("containerPrimary"));
+            var claimID = document.getElementById("claimID").innerHTML;
+            var fieldNamePairsArray= new Array();
+            var fieldValuePairsArray = new Array();
+            var fieldNames = document.getElementsByClassName("formfield");
+
+            if (fieldNames.length !== 0)  {
+                for (let i = 0; i < fieldNames.length; i++) {
+                    var fName = fieldNames[i].id||'no name';
+                    var fVal = fieldNames[i].innerHTML||'no value';
+                    if (fVal !== 'no value') {
+                        fieldNamePairsArray.push(fName);
+                        fieldValuePairsArray.push(fVal);
+                    } else {
+                        fieldNamePairsArray.pop();
+                        fieldValuePairsArray.pop();
+                    }
+                }
+            }
+            console.log('here: ', globalClaimDictionary)
+            var approversStringList = ''
+            for (const [key, value] of Object.entries(globalClaimDictionary['approvalTable'])) {
+                if (approversStringList.length > 0) {
+                    approversStringList = approversStringList + ',' + value['username']
+                } else {
+                    approversStringList = value['username']
+                }
+            }
+
+            $.ajax({
+                type:"PUT",
+                url: '/businessforms/Request/SubmitFinalRequest',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                processData: false,
+                cache: false,
+                async: false,
+                data: jQuery.param({
+                    claimID: claimID, userName: userName, formData: formData, serializedForm: serializedForm, fieldsNameArray: fieldNamePairsArray, fieldsArray: fieldValuePairsArray
+                }),
+                success: function (response) {
+                    document.getElementById("submitBtn").style.display = "none";
+                    document.getElementById("saveDraftBtn").style.display = "none";
+                    
+                    $('#confirmationModal').modal('hide');
+                    message = response.responseMessage+".";
+                    modalTitle = response.modalTitle;
+                    travelLimitNotes = response.additionalNotes;
+                     // console.log('YtdKmYear: ', y);
+                        // console.log('additionalNotes: ', travelLimitNotes, 'responseMessage: ', response);
+                        // console.log('returned: ', response);                                             
+                    showTravelLimitMessageModal(modalTitle, message, travelLimitNotes);
+
+                }
+            });
+
+
+            $.ajax({
+                type:"POST",
+                url: '/businessforms/Form/InsertApproversFC',
+                cache: false,
+                async: false,
+                data: jQuery.param({
+                    approvers: approversStringList, formID: globalClaimDictionary['claimID']
+                }),
+                success: function (y) {
+                    console.log('approvers inserted! ', y)
+                }
+            });
+
+            document.getElementById("claimStatus").innerHTML = "Awaiting approval";
+
+
+        };
+
+        function CancelSubmit() {
+            //window.open("https://selfservicecert.viha.ca/SitePages/ReqeClaimSubCancel.aspx", "_self");
+        };
+
+        // function CancelClaim() {
+        //     window.open("https://selfservicecert.viha.ca/SitePages/ReqeClaimSubCancel.aspx", "_self");
+        // };
+
+
+        function arrayListChecking() {
+
+        var AdjPayDateArray = [];
+            if (AdjPayDateArray.length == 0 ) {
+                delete window.AdjPayDateArray;
+            }
+        };
+
+        var AdjPayDateArray = [];
+        if (AdjPayDateArray.length == 0 ) {
+            delete window.AdjPayDateArray;
+        }
+
+         var jobCodesArray = [];
+            jobCodesArray.push("60835");
+            jobCodesArray.push("80105");
+            jobCodesArray.push("20006");
+            jobCodesArray.push("15301");
+            jobCodesArray.push("80022");
+            jobCodesArray.push("21001");
+            jobCodesArray.push("91540");
+            jobCodesArray.push("68100");
+        if (jobCodesArray.length == 0 ) {
+            delete window.jobCodesArray;
+        }
+
+        var jobNamesArray = [];
+            jobNamesArray.push("Coordinator - Health Sciences");
+            jobNamesArray.push("Administrative Support 5 - Community");
+            jobNamesArray.push("Food Service Worker II Pot Washer - Facilities");
+            jobNamesArray.push("Nursing Assistant I - Facilities");
+            jobNamesArray.push("Clinical Nurse Educator - Nurses");
+            jobNamesArray.push("DC1  Direct Patient Care I - Nurses");
+            jobNamesArray.push("Software Developer - Non-Contract");
+            jobNamesArray.push("Diagnostic Medical Sonographer Grade I - Health Sciences");
+        if (jobNamesArray.length == 0 ) {
+            delete window.jobNamesArray;
+        }
+
+        var costCentreNamesArray = [];
+            costCentreNamesArray.push("MCS Crisis Response &amp; Outreach");
+            costCentreNamesArray.push("MRC Youth Addictions Treatment");
+            costCentreNamesArray.push("NRG NRGH _DP Patient Food");
+            costCentreNamesArray.push("GOE Gorge Road Hospital");
+            costCentreNamesArray.push("VGH Emergency");
+            costCentreNamesArray.push("DPR Dufferin Place");
+            costCentreNamesArray.push("COV Corp Bus Solutions");
+            costCentreNamesArray.push("NRG Ultrasound");
+        var costCentresArray = [];
+            costCentresArray.push("54.71.515100000");
+            costCentresArray.push("74.71.510780700");
+            costCentresArray.push("01.71.195000000");
+            costCentresArray.push("GR.71.295201500");
+            costCentresArray.push("10.71.310200000");
+            costCentresArray.push("15.71.295200100");
+            costCentresArray.push("90.71.120991900");
+            costCentresArray.push("01.71.415300000");
+        var affiliationsArray = [];
+            affiliationsArray.push("Health Science Professional");
+            affiliationsArray.push("Community");
+            affiliationsArray.push("Facilities");
+            affiliationsArray.push("Facilities");
+            affiliationsArray.push("Nurses");
+            affiliationsArray.push("Nurses");
+            affiliationsArray.push("Non-Contract");
+            affiliationsArray.push("Health Science Professional");
+        var employeeNumberArray = [];
+            employeeNumberArray.push("014443");
+            employeeNumberArray.push("000789");
+            employeeNumberArray.push("000135");
+            employeeNumberArray.push("411587");
+            employeeNumberArray.push("012294");
+            employeeNumberArray.push("010099");
+            employeeNumberArray.push("056820");
+            employeeNumberArray.push("000146");
+        var chargeToCostCentreArray = [];
+        var expenseTypesArray = [];
+        var expenseCategoryNameArray = [];
+        var typeAffiliationArray = [];
+        var typeIdArray = [];
+        var earnCodeArray = [];
+        var typeMessageArray = [];
+        var approvalLevelArray = [];
+        var noReceiptLimitArray = [];
+        var breakfastArray = [];
+        var lunchArray = [];
+        var dinnerArray = [];
+        var rateAffiliationArray = [];
+        var effectiveDateFromArray = [];
+        var effectiveDateToArray = [];
+        var kmLimitArray = [];
+        var underLimitKmRateArray = [];
+        var overLimitKmRateArray = [];
+        var minimumArray = [];
+        var minimumAppliedToArray = [];
+        var mealRateOverrideArray = [];
+        var capitalNumberNameArray = [];
+        var siteALongNameArray = [];
+        var siteAShortNameArray = [];
+        var siteBLongNameArray = [];
+        var siteBShortNameArray = [];
+        var interSiteKilometersArray = [];
+        var employeeJobDptArray=[];
+        var employeeHomeDepartmentArray=[];
+
+        var YtdKmYearArray = [];
+        var YtdKmSumArray = [];
+
+        var ApproverUsernameArray = [];
+        var ApproversfNameArray = [];
+        var ApproverslNameArray = [];
+        var ApproversFinancialLimitArray = [];
+         var ApproverRequiredArray = [];
+        var ApproverDefaultedArray = [];
+        var NumberSignatureRequiredArray = [];
+
+        var PayDateDescArray = [];
+        if (PayDateDescArray.length == 0 ) {
+            delete window.PayDateDescArray;
+        }
+
+        var PayPeriodBeginDateArray = [];
+        if (PayPeriodBeginDateArray.length == 0 ) {
+            delete window.PayPeriodBeginDateArray;
+        }
+
+        var PayPeriodEndDateArray = [];
+        if (PayPeriodEndDateArray.length == 0 ) {
+            delete window.PayPeriodEndDateArray;
+        }
+
+        var BenefitEmployeeNumberArray = [];
+        var BenefitBanksIdArray = [];
+        var AvailableBalanceArray = [];
+        var AccruedBalanceArray = [];
+        var BenefitFreezeArray = [];
+        var FreezeDateTimeArray = [];
+        var FormBannerArray = [];
+            FormBannerArray.push("Claims must be submitted within 60 days of the date of expense. Claims submitted beyond this timeframe require Director approval. Please direct any inquiries to [email]");
+        var StatusFormBannerArray = [];
+            StatusFormBannerArray.push("Draft");
+        var BannerAccessoryTextArray = [];
+            BannerAccessoryTextArray.push("EmployeeExpenses@islandhealth.ca");
+        var ColAgrArr = [];
+        var LeaveTypeArray = [];
+        var LeaveTypeIDArray = [];
+        var LOABankIsAllowedArray = [];
+        var LOABankCollectiveAgreementArray = [];
+        var LOABankLeaveTypeArray = [];
+        var LOABankLeaveTypeIDArray = [];
+
+        if(typeof(startingPoint)=='function')
+        window.onload = startingPoint();
+
+
+
+
+
+
+
+
+    </script>
+
+    </div>
+
+</body>
+</html>
